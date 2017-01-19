@@ -20,7 +20,7 @@
 		<div>
 			<span>커미션</span> <input type="text" id="comm" name="comm" />
 		</div>
-		<input type="submit" value="저장">
+		<input type="submit" value="저장">commit 확인하자
 	</form>
 	<div>
 		<a href="./list">목록</a>
