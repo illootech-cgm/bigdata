@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="springtest">
+    <select id="listAll" resultType="com.spring.web.BbsVo">
+        select 
+            empno,
+            ename,
+            job, 
+            comm
+		from emp
+    </select>
+    
+    <insert id="insert" parameterType="com.spring.web.BbsVo">
+    insert into 
+    emp(
+   		empno,
+        ename,
+        job, 
+        comm
+    ) values
+    (
+ 	   #{empno},
+ 	   #{ename},
+ 	   #{job},  
+ 	   #{comm}  
+    )
+    </insert>
+    
+</mapper>
