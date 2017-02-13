@@ -12,13 +12,18 @@ public class BbsDao {
 	private SqlSessionTemplate sqlSession;
 	
 	public List<BbsVo> boardlistmain() {
-		System.out.println("*************DAO**********************");
-		
 		return sqlSession.selectList("springtest.listAll");
 	}
 	
 	public int addInfo(BbsVo vo){
-		int res=sqlSession.insert("springtest.insert");
+		int res=sqlSession.insert("springtest.insert",vo);
+		System.out.println(res+"건 추가 완료");
+		return res;
+	}
+	
+	public int removeInfo(String empno){
+		int res=sqlSession.delete("springtest.delete",empno);
+		System.out.println(res+"건 삭제 완료");
 		return res;
 	}
 	

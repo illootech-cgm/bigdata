@@ -7,7 +7,7 @@
 <title>스프링프레임워크 게시판</title>
 </head>
 <body>
-	<form id="emp" method="post" action="./insert" >
+	<form id="emp" method="post" action="insert" >
 		<div>
 			<span>사원번호 </span> <input type="text" id="empno" name="empno" value="" />
 		</div>
@@ -20,11 +20,10 @@
 		<div>
 			<span>커미션</span> <input type="text" id="comm" name="comm" />
 		</div>
-		<input type="submit" value="저장">commit 확인하자
+		<input type="submit" value="저장" />
 	</form>
 	<div>
-		<a href="./list">목록</a>
+		<a href="list">목록</a>
 	</div>
 </body>
 </html>
-

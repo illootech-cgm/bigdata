@@ -9,24 +9,24 @@
 <body>
 	<table border="1">
 		<colgroup>
-			<col width="60">
+			<col width="80">
 			<col>
 			<col width="115">
 			<col width="85">
 		</colgroup>
 		<thead>
 			<tr>
-				<th scope="col">번호</th>
-				<th scope="col">제목</th>
-				<th scope="col">작성자</th>
-				<th scope="col">커미션</th>
+				<th scope="col">사원번호</th>
+				<th scope="col">직책</th>
+				<th scope="col">사원이름</th>
+				<th scope="col">상여금</th>
 			</tr>
 		</thead>
 		<tbody>
 			<!-- 목록이 반복될 영역 -->
 			<c:forEach var="item" items="${list}" varStatus="status">
 				<tr>
-					<td>${item.empno}</td>
+					<td><a href="delete?empno=${item.empno}" >${item.empno}</a></td>
 					<td>${item.job}</td>
 					<td>${item.ename}</td>
 					<c:choose>
@@ -42,7 +42,7 @@
 		</tbody>
 	</table>
 	<div>
-		<a href="./write">쓰기</a>
+		<a href="write">사원추가</a>
 	</div>
 </body>
 </html>

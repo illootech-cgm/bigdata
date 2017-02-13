@@ -27,4 +27,9 @@
     )
     </insert>
     
+    <delete id="delete" parameterType="String">
+    delete from emp
+    where empno = #{empno}
+    </delete>
+    
 </mapper>

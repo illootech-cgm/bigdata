@@ -10,6 +10,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -44,12 +45,23 @@ public class TestController {
 		
 		return "bbs.write";
 	}
+	
 	@RequestMapping(value = "/insert" , method = RequestMethod.POST)
-	public String insertEmp(@RequestParam BbsVo vo) {
+	public String insertEmp(@ModelAttribute BbsVo vo) {
 		System.out.println(vo.getEmpno());
 		int res=bbsDao.addInfo(vo);
-		System.out.println("insert 성공:1"+res);
-		return "bbs.list";
+		System.out.println("insert 성공:"+res);
+		
+		return "redirect:list";
+	}
+	
+	@RequestMapping(value = "/delete" , method = RequestMethod.GET)
+	public String deleteEmp(@ModelAttribute BbsVo vo) {
+		System.out.println(vo.getEmpno());
+		int res=bbsDao.removeInfo(vo.getEmpno());
+		System.out.println("remove 성공:"+res);
+		
+		return "redirect:list";
 	}
 	
 	@RequestMapping(value = "/view", method = RequestMethod.GET)
