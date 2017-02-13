@@ -1,5 +1,6 @@
 package com.spring.web;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -13,7 +14,7 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller
@@ -23,11 +24,17 @@ public class TestController {
 	@Resource(name="bbsDao")
 	private BbsDao bbsDao;
 	
-	@RequestMapping(value = "/test", method = RequestMethod.GET)
-	public String test(Model model) {
-		logger.info("test controller.......");
-		model.addAttribute("data", "메인페이지 입니다.");
-		return "test";
+	@ResponseBody
+	@RequestMapping(value = "/home")
+	public ModelAndView test() {
+		logger.info("home");
+		
+	    List<BbsVo> list = bbsDao.boardlistmain();
+		HashMap map = new HashMap();
+		map.put("rows", list);
+		
+		ModelAndView model = new ModelAndView("jsonView", map);
+		return model;
 	}
 	
 	@RequestMapping(value = "/list", method = RequestMethod.GET)
