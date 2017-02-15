@@ -24,9 +24,23 @@ public class TestController {
 	@Resource(name="bbsDao")
 	private BbsDao bbsDao;
 	
+	/**
+	 * @return
+	 */
 	@ResponseBody
-	@RequestMapping(value = "/home")
+	@RequestMapping(value = "/home", method=RequestMethod.GET)
 	public ModelAndView test() {
+		logger.info("home get");
+		
+		ModelAndView model = new ModelAndView("home");
+		return model;
+	}
+	
+	/**
+	 * @return
+	 */
+	@RequestMapping(value = "/homePost")
+	public ModelAndView testPost() {
 		logger.info("home");
 		
 	    List<BbsVo> list = bbsDao.boardlistmain();
@@ -37,6 +51,10 @@ public class TestController {
 		return model;
 	}
 	
+	/**
+	 * @param param
+	 * @return
+	 */
 	@RequestMapping(value = "/list", method = RequestMethod.GET)
 	public ModelAndView list(Map param) {
 		
@@ -47,12 +65,20 @@ public class TestController {
 		return new ModelAndView("bbs.list",model);
 	}
 	
+	/**
+	 * @param model
+	 * @return
+	 */
 	@RequestMapping(value = "/write", method = RequestMethod.GET)
 	public String write(Model model) {
 		
 		return "bbs.write";
 	}
 	
+	/**
+	 * @param vo
+	 * @return
+	 */
 	@RequestMapping(value = "/insert" , method = RequestMethod.POST)
 	public String insertEmp(@ModelAttribute BbsVo vo) {
 		System.out.println(vo.getEmpno());
@@ -62,6 +88,10 @@ public class TestController {
 		return "redirect:list";
 	}
 	
+	/**
+	 * @param vo
+	 * @return
+	 */
 	@RequestMapping(value = "/delete" , method = RequestMethod.GET)
 	public String deleteEmp(@ModelAttribute BbsVo vo) {
 		System.out.println(vo.getEmpno());

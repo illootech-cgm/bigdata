@@ -43,6 +43,7 @@
 	</table>
 	<div>
 		<a href="write">사원추가</a>
+		<a href="/web/home">jqGrid로 보기</a>
 	</div>
 </body>
 </html>
