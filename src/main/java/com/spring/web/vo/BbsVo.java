@@ -1,4 +1,4 @@
-package com.spring.web;
+package com.spring.web.vo;
 
 public class BbsVo {
 

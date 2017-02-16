@@ -1,4 +1,4 @@
-package com.spring.web;
+package com.spring.web.controller;
 
 import java.util.HashMap;
 import java.util.List;
@@ -16,6 +16,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
+
+import com.spring.web.dao.BbsDao;
+import com.spring.web.vo.BbsVo;
 
 @Controller
 public class TestController {
@@ -79,7 +82,7 @@ public class TestController {
 	 * @param vo
 	 * @return
 	 */
-	@RequestMapping(value = "/insert" , method = RequestMethod.POST)
+	@RequestMapping(value = "/insert")
 	public String insertEmp(@ModelAttribute BbsVo vo) {
 		System.out.println(vo.getEmpno());
 		int res=bbsDao.addInfo(vo);
@@ -102,8 +105,12 @@ public class TestController {
 	}
 	
 	@RequestMapping(value = "/view", method = RequestMethod.GET)
-	public String view(Model model) {
-		model.addAttribute("data", "한글되니?");
-		return "bbs.view";
+	public ModelAndView view(@ModelAttribute BbsVo vo) {
+		ModelMap model = new ModelMap();
+	    List<BbsVo> list = bbsDao.boardlistmain();
+		
+		model.addAttribute("list", list);
+		return new ModelAndView("home",model);
+		
 	}
 }
