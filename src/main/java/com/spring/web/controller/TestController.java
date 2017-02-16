@@ -1,5 +1,6 @@
 package com.spring.web.controller;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -103,14 +104,25 @@ public class TestController {
 		
 		return "redirect:list";
 	}
-	
-	@RequestMapping(value = "/view", method = RequestMethod.GET)
-	public ModelAndView view(@ModelAttribute BbsVo vo) {
-		ModelMap model = new ModelMap();
-	    List<BbsVo> list = bbsDao.boardlistmain();
+
+	@ResponseBody
+	@RequestMapping(value = "/view", method = RequestMethod.POST)
+	public ModelAndView view(String empno) {
+		System.out.println(empno);
+
+	    BbsVo bbsvo = bbsDao.detailInfo(empno);
 		
-		model.addAttribute("list", list);
-		return new ModelAndView("home",model);
+	    List<BbsVo> list = new ArrayList();
+	    
+	    list.add(bbsvo);
+	    
+		HashMap map = new HashMap();
+		map.put("rows", list);
+		
+		ModelAndView model = new ModelAndView("jsonView", map);
+		System.out.println(bbsvo.getDeptno());
+//		System.out.println(map.get("rows").toString());
+	    return new ModelAndView("jsonView",map);
 		
 	}
 }

@@ -29,5 +29,9 @@ public class BbsDao {
 		return res;
 	}
 	
-	
+	public BbsVo detailInfo(String empno) {
+		System.out.println(empno);
+//		System.out.println(sqlSession.selectOne("springtest.detailInfo"));
+		return sqlSession.selectOne("springtest.detailInfo", empno);
+	}
 }

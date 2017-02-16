@@ -36,18 +36,49 @@
             add : true,
             del : true
         });
+   
     });
     
     function info(cellvalue, options, rowObject){
-    	console.log(rowObject.empno);
+    	
     	return "<a href='#' onclick='info2(\""+rowObject.empno+"\"); return false; '  >"+cellvalue+"</a>";
     }
     
     function info2(empno){
-    	console.log(empno);
-    	location.href="view?empno="+empno;
+
+	//	console.log(ret.empno);
+		
+    	jQuery("#popup").jqGrid({
+            url : "/web/view?empno="+empno,
+            caption : '사원상세테이블',    // caption : 그리드의 제목을 지정한다.
+            datatype : 'json',               // datatype : 데이터 타입을 지정한다.
+            mtype : 'post',
+            height : '500px',                 // height : 그리드의 높이를 지정한다.
+            colModel : [
+                        { name : 'empno',             index : 'empno',                width : 40, height:50,       align : 'center', label:"직원 번호"},
+                        { name : 'ename',       index : 'ename',            width : 100, height:50,   align : 'left' , label:"직원 이름" },
+                        { name : 'job',                index : 'job',                width : 100,  height:50,  align : 'left', label:"직급" },
+                        { name : 'mgr',           index : 'mgr',            width : 200, height:50,   align : 'left' , label:"사수" },
+                        { name : 'sal',           index : 'sal',            width : 200, height:50,   align : 'left' , label:"연봉"},
+ //                       { name : 'comm',          index : 'comm',            width : 200, height:50,   align : 'left'   },
+                        { name : 'deptno',        index : 'deptno',            width : 200, height:50,  hidden :true ,align : 'left'  , label:"부서 번호" }
+                        ]
+        }).navGrid('#pager', {
+            search : true,
+            edit : true,
+            add : true,
+            del : true
+        });
+   		
+    	 jQuery("#popup").trigger("reloadGrid");
     	
     }
+    
+/*     function popup(empno){
+    	window.open("", "pop", "width=400,height=500,history=no,resizable=no,status=no,scrollbars=yes,menubar=no")
+    
+    } */
+    
     
 </script>
 <title>jqGrid</title>
@@ -61,6 +92,12 @@
 <!--     <tr><td>4</td></tr> -->
     </table>
     <div id = "pager"></div>
-    <div id="popup"></div>
+    
+    <div>
+    	<table id="popup">
+    		<tr><th></th></tr>
+    		<tr><td></td></tr>
+    	</table>
+	</div>
 </body>
 </html>

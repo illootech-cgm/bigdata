@@ -2,34 +2,51 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="springtest">
-    <select id="listAll" resultType="com.spring.web.vo.BbsVo">
-        select 
-            empno,
-            ename,
-            job, 
-            comm
+	<select id="listAll" resultType="com.spring.web.vo.BbsVo">
+		select
+		empno,
+		ename,
+		job,
+		mgr,
+		sal,
+		comm,
+		deptno
 		from emp
-    </select>
-    
-    <insert id="insert" parameterType="com.spring.web.vo.BbsVo">
-    insert into 
-    emp(
-   		empno,
-        ename,
-        job, 
-        comm
-    ) values
-    (
- 	   #{empno},
- 	   #{ename},
- 	   #{job},  
- 	   #{comm}  
-    )
-    </insert>
-    
-    <delete id="delete" parameterType="String">
-    delete from emp
-    where empno = #{empno}
-    </delete>
-    
+	</select>
+
+	<insert id="insert" parameterType="com.spring.web.vo.BbsVo">
+		insert into
+		emp(
+		empno,
+		ename,
+		job,
+		comm
+		) values
+		(
+		#{empno},
+		#{ename},
+		#{job},
+		#{comm}
+		)
+	</insert>
+
+	<delete id="delete" parameterType="String">
+		delete from emp
+		where empno = #{empno}
+	</delete>
+	
+	<select id="detailInfo" resultType="com.spring.web.vo.BbsVo">
+		select
+		empno,
+		ename,
+		job,
+		mgr,
+		sal,
+		comm,
+		deptno
+		from emp
+		where empno=#{empno}
+		
+	</select>
+
 </mapper>
