@@ -105,8 +105,8 @@ public class TestController {
 		return "redirect:list";
 	}
 
-	@ResponseBody
-	@RequestMapping(value = "/view", method = RequestMethod.POST)
+//	@ResponseBody
+	@RequestMapping(value = "/view")
 	public ModelAndView view(String empno) {
 		System.out.println(empno);
 

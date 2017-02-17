@@ -42,13 +42,15 @@
     function info(cellvalue, options, rowObject){
     	
     	return "<a href='#' onclick='info2(\""+rowObject.empno+"\"); return false; '  >"+cellvalue+"</a>";
+    
     }
     
     function info2(empno){
 
 	//	console.log(ret.empno);
-		
-    	jQuery("#popup").jqGrid({
+		jQuery("#popup").jqGrid("GridUnload");
+    	
+		jQuery("#popup").jqGrid({
             url : "/web/view?empno="+empno,
             caption : '사원상세테이블',    // caption : 그리드의 제목을 지정한다.
             datatype : 'json',               // datatype : 데이터 타입을 지정한다.
@@ -70,7 +72,7 @@
             del : true
         });
    		
-    	 jQuery("#popup").trigger("reloadGrid");
+//    	 jQuery("#popup").jqGrid("GridUnload");
     	
     }
     
