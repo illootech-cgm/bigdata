@@ -125,4 +125,40 @@ public class TestController {
 	    return new ModelAndView("jsonView",map);
 		
 	}
+	
+	/**
+	 * @return
+	 */
+	@ResponseBody
+	@RequestMapping(value = "/test", method=RequestMethod.GET)
+	public ModelAndView test2() {
+		logger.info("home get");
+		
+		ModelAndView model = new ModelAndView("test");
+		return model;
+	}
+	
+	/**
+	 * @return
+	 */
+	@ResponseBody
+	@RequestMapping(value = "/login", method=RequestMethod.GET)
+	public ModelAndView test3() {
+		logger.info("home get");
+		
+		ModelAndView model = new ModelAndView("login");
+		return model;
+	}
+	
+	/**
+	 * @return
+	 */
+	@ResponseBody
+	@RequestMapping(value = "/rollBack", method=RequestMethod.GET)
+	public ModelAndView test4() {
+		logger.info("home get");
+		
+		ModelAndView model = new ModelAndView("rollBack");
+		return model;
+	}
 }
