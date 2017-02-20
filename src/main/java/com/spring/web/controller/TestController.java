@@ -154,11 +154,11 @@ public class TestController {
 	 * @return
 	 */
 	@ResponseBody
-	@RequestMapping(value = "/rollBack", method=RequestMethod.GET)
+	@RequestMapping(value = "/callBack", method=RequestMethod.GET)
 	public ModelAndView test4() {
 		logger.info("home get");
 		
-		ModelAndView model = new ModelAndView("rollBack");
+		ModelAndView model = new ModelAndView("callBack");
 		return model;
 	}
 }
