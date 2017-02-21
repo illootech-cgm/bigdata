@@ -105,7 +105,6 @@ public class TestController {
 		return "redirect:list";
 	}
 
-//	@ResponseBody
 	@RequestMapping(value = "/view")
 	public ModelAndView view(String empno) {
 		System.out.println(empno);
@@ -129,7 +128,6 @@ public class TestController {
 	/**
 	 * @return
 	 */
-	@ResponseBody
 	@RequestMapping(value = "/test", method=RequestMethod.GET)
 	public ModelAndView test2() {
 		logger.info("home get");
@@ -141,24 +139,45 @@ public class TestController {
 	/**
 	 * @return
 	 */
-	@ResponseBody
-	@RequestMapping(value = "/login", method=RequestMethod.GET)
+	@RequestMapping(value = "/comm/login", method=RequestMethod.GET)
 	public ModelAndView test3() {
 		logger.info("home get");
 		
-		ModelAndView model = new ModelAndView("login");
+		ModelAndView model = new ModelAndView("/comm/login");
 		return model;
 	}
 	
 	/**
 	 * @return
 	 */
-	@ResponseBody
-	@RequestMapping(value = "/callBack", method=RequestMethod.GET)
+	@RequestMapping(value = "/comm/callBack", method=RequestMethod.GET)
 	public ModelAndView test4() {
 		logger.info("home get");
 		
-		ModelAndView model = new ModelAndView("callBack");
+		ModelAndView model = new ModelAndView("/comm/callBack");
 		return model;
 	}
+
+	   
+	   /**
+	    * @return
+	    */
+	   @RequestMapping(value = "/guest/choice", method=RequestMethod.POST)
+	   public ModelAndView choice() {
+	      logger.info("home get");
+	      
+	      ModelAndView model = new ModelAndView("/guest/choice");
+	      return model;
+	   }
+	   
+	   /**
+	    * @return
+	    */
+	   @RequestMapping(value = "/guest/order", method=RequestMethod.GET)
+	   public ModelAndView order() {
+	      logger.info("home get");
+	      
+	      ModelAndView model = new ModelAndView("/guest/order");
+	      return model;
+	   }
 }
