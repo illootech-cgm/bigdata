@@ -142,11 +142,11 @@ public class TestController {
 	 * @return
 	 */
 	@ResponseBody
-	@RequestMapping(value = "/login", method=RequestMethod.GET)
+	@RequestMapping(value = "/comm/login", method=RequestMethod.GET)
 	public ModelAndView test3() {
 		logger.info("home get");
 		
-		ModelAndView model = new ModelAndView("login");
+		ModelAndView model = new ModelAndView("/comm/login");
 		return model;
 	}
 	
@@ -154,11 +154,11 @@ public class TestController {
 	 * @return
 	 */
 	@ResponseBody
-	@RequestMapping(value = "/callBack", method=RequestMethod.GET)
+	@RequestMapping(value = "/guest/choice", method=RequestMethod.GET)
 	public ModelAndView test4() {
 		logger.info("home get");
 		
-		ModelAndView model = new ModelAndView("callBack");
+		ModelAndView model = new ModelAndView("/guest/choice");
 		return model;
 	}
 }
