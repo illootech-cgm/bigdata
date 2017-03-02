@@ -8,7 +8,7 @@
 </head>
 <body>
 <script type="text/javascript">
-  var naver_id_login = new naver_id_login("GzCVlEJt8xhSJNcmFw_4", "http://192.168.1.18:8080/web/comm/callBack");
+  var naver_id_login = new naver_id_login("GzCVlEJt8xhSJNcmFw_4", "http://192.168.1.24:8091/web/comm/callBack");
   // 접근 토큰 값 출력
   alert(naver_id_login.oauthParams.access_token);
   // 네이버 사용자 프로필 조회
@@ -36,6 +36,7 @@
 	
   }
 </script>
+<div align="center" style='margin-top:150px;'>
 <form action="/web/guest/choice" method="post">
 
 <input type="hidden" id="email">
@@ -48,9 +49,10 @@
 
 가게코드입력</br>
 <input type="text"	 name="가게코드 입력"></br>
-		<input type="submit" value="submit">
+		<input type="submit" value="submit"><mark color="red">헤헤</mark>
+		<canvas ></canvas>
 </form>
-
+</div>
 </body>
 </html>
 	

@@ -162,7 +162,7 @@ public class TestController {
 	   /**
 	    * @return
 	    */
-	   @RequestMapping(value = "/guest/choice", method=RequestMethod.POST)
+	   @RequestMapping(value = "/guest/choice")
 	   public ModelAndView choice() {
 	      logger.info("home get");
 	      
@@ -180,4 +180,27 @@ public class TestController {
 	      ModelAndView model = new ModelAndView("/guest/order");
 	      return model;
 	   }
+	   
+	   /**
+	    * @return
+	    */
+	   @RequestMapping(value = "/owner/choice")
+	   public ModelAndView ownerChoice() {
+	      logger.info("home get");
+	      
+	      ModelAndView model = new ModelAndView("/owner/choice");
+	      return model;
+	   }
+	   
+	   /**
+	    * @return
+	    */
+	   @RequestMapping(value = "/owner/order", method=RequestMethod.GET)
+	   public ModelAndView ownerOrder() {
+	      logger.info("home get");
+	      
+	      ModelAndView model = new ModelAndView("/owner/order");
+	      return model;
+	   }
+	   
 }
