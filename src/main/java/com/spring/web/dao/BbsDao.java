@@ -7,6 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.spring.web.vo.BbsVo;
+import com.spring.web.vo.menuVo;
+import com.spring.web.vo.storeVo;
 
 @Repository
 public class BbsDao {
@@ -34,4 +36,41 @@ public class BbsDao {
 //		System.out.println(sqlSession.selectOne("springtest.detailInfo"));
 		return sqlSession.selectOne("springtest.detailInfo", empno);
 	}
+	
+	public int addMenu(menuVo mvo){
+		
+		int isExt = sqlSession.selectOne("springtest.extMenu",mvo);
+		if(isExt > 0){
+			System.out.println("해당메뉴가 이미 존재함");
+			return 0;
+		}
+		else{
+		int res = sqlSession.insert("springtest.addMenu",mvo);
+		System.out.println(res+"건 추가완료");
+		return res;
+		}
+	}
+	
+	public List<menuVo> menuList(String storeCode) {
+		return sqlSession.selectList("springtest.menuList",storeCode);
+	}
+	
+	
+	
+	
+public int regStore(storeVo mvo){
+		
+		int isExt = sqlSession.selectOne("springtest.extStore",mvo);
+		if(isExt > 0){
+			System.out.println("해당메뉴가 이미 존재함");
+			return 0;
+		}
+		else{
+		int res = sqlSession.insert("springtest.regStore",mvo);
+		System.out.println(res+"건 추가완료");
+		return res;
+		}
+	}
+	
+	
 }

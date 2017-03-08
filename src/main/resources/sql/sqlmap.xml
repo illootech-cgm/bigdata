@@ -48,5 +48,57 @@
 		where empno=#{empno}
 		
 	</select>
+	
+	<insert id="addMenu" parameterType="com.spring.web.vo.menuVo">
+	insert into
+	menuInfo(
+	storeCode   ,
+	menuCode   ,
+	menuName ,
+	menuPrice,
+	menuPicture
+	)values
+	(
+	#{storeCode},
+	#{menuCode },
+	#{menuName},
+	#{menuPrice},
+	#{menuPicture}
+	)
+	</insert>
+	
+	<select id="extMenu" resultType="integer">
+	select count(*) from menuInfo where storeCode=#{storeCode} and menuCode = ${menuCode}
+	</select>
+	
+	<select id="extStore" resultType="integer">
+	select count(*) from store where storeCode=#{storeCode}
+	</select>
+	
+	<insert id="regStore" parameterType="com.spring.web.vo.storeVo">
+	insert into
+	store(
+	storeCode   ,
+	storeLoc   ,
+	storeName ,
+	regdate,
+	ownerId
+	)values
+	(
+	#{storeCode},
+	#{storeLoc },
+	#{storeName},
+	sysdate,
+	#{ownerId}
+	)
+	</insert>
+
+	<select id="menuList" resultType="com.spring.web.vo.menuVo">
+	select * 
+	from menuInfo
+	where storeCode = #{storeCode}
+	
+	
+	</select>
 
 </mapper>

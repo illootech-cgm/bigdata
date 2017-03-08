@@ -20,6 +20,8 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.spring.web.dao.BbsDao;
 import com.spring.web.vo.BbsVo;
+import com.spring.web.vo.menuVo;
+import com.spring.web.vo.storeVo;
 
 @Controller
 public class TestController {
@@ -87,7 +89,7 @@ public class TestController {
 	public String insertEmp(@ModelAttribute BbsVo vo) {
 		System.out.println(vo.getEmpno());
 		int res=bbsDao.addInfo(vo);
-		System.out.println("insert ¼º°ø:"+res);
+		System.out.println("insert ï¿½ï¿½ï¿½ï¿½:"+res);
 		
 		return "redirect:list";
 	}
@@ -100,7 +102,7 @@ public class TestController {
 	public String deleteEmp(@ModelAttribute BbsVo vo) {
 		System.out.println(vo.getEmpno());
 		int res=bbsDao.removeInfo(vo.getEmpno());
-		System.out.println("remove ¼º°ø:"+res);
+		System.out.println("remove ï¿½ï¿½ï¿½ï¿½:"+res);
 		
 		return "redirect:list";
 	}
@@ -158,7 +160,6 @@ public class TestController {
 		return model;
 	}
 
-	   
 	   /**
 	    * @return
 	    */
@@ -202,5 +203,56 @@ public class TestController {
 	      ModelAndView model = new ModelAndView("/owner/order");
 	      return model;
 	   }
+	   /**
+	    * @return
+	    */
+	   @RequestMapping(value = "/owner/addMenu", method=RequestMethod.GET)
+	   public ModelAndView ownerAddMenu() {
+		   logger.info("ownerAddMenu");
+		   
+		   ModelAndView model = new ModelAndView("/owner/addMenu");
+		   return model;
+	   }
+	   /**
+	    * @return
+	    */
+	   @RequestMapping(value = "/owner/addMenu", method=RequestMethod.POST)
+	   public ModelAndView ownerAddMenuPOST(@ModelAttribute menuVo mVo) {
+		   logger.info("ownerAddMenuPOST");
+		   System.out.println(mVo.getMenuCode());
+		   System.out.println(mVo.getMenuName());
+		   System.out.println(mVo.getMenuPrice());
+		   System.out.println(mVo.getStoreCode());
+		   System.out.println(mVo.getMenuPicture());
+		   bbsDao.addMenu(mVo);
+		   ModelMap model = new ModelMap();
+		   List<menuVo> list = bbsDao.menuList(mVo.getStoreCode());
+		   model.addAttribute("menuList",list);
+		   
+		   ModelAndView mv = new ModelAndView("/owner/menuList",model);
+		   return mv;
+	   }
+	   
+	   @RequestMapping(value = "/owner/regStore", method=RequestMethod.GET)
+	   public ModelAndView ownerRegister() {
+		   logger.info("ownerRegister");
+		   ModelAndView model = new ModelAndView("/owner/regStore");
+		   return model;
+	   }
+	   
+	   @RequestMapping(value = "/owner/regStore", method=RequestMethod.POST)
+	   public ModelAndView ownerRegStorePOST(@ModelAttribute storeVo mVo) {
+		   logger.info("ownerRegStorePOST");
+		   bbsDao.regStore(mVo);
+		   
+		   
+		   ModelAndView model = new ModelAndView("/owner/choice");
+		   return model;
+	   }
 	   
 }
+
+
+
+
+
