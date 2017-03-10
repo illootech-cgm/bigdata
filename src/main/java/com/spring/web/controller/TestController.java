@@ -152,6 +152,17 @@ public class TestController {
 	/**
 	 * @return
 	 */
+	@RequestMapping(value = "/comm/main", method=RequestMethod.GET)
+	public ModelAndView main() {
+		logger.info("main get");
+		
+		ModelAndView model = new ModelAndView("/comm/main");
+		return model;
+	}
+	
+	/**
+	 * @return
+	 */
 	@RequestMapping(value = "/comm/callBack", method=RequestMethod.GET)
 	public ModelAndView test4() {
 		logger.info("home get");
@@ -240,19 +251,32 @@ public class TestController {
 		   return model;
 	   }
 	   
+	   @RequestMapping(value = "/owner/menuList", method=RequestMethod.GET)
+	   public ModelAndView ownerMenuList() {
+		   logger.info("ownerMenuList");
+		   ModelMap model = new ModelMap();
+		   List<menuVo> list = bbsDao.menuList("1"); // login 정보에서 획득해야함 (storeCode)
+		   model.addAttribute("menuList", list);
+		   ModelAndView mv = new ModelAndView("/owner/menuList",model);
+		   return mv;
+	   }
+	   
 	   @RequestMapping(value = "/owner/regStore", method=RequestMethod.POST)
 	   public ModelAndView ownerRegStorePOST(@ModelAttribute storeVo mVo) {
 		   logger.info("ownerRegStorePOST");
 		   bbsDao.regStore(mVo);
 		   
-		   
 		   ModelAndView model = new ModelAndView("/owner/choice");
 		   return model;
 	   }
 	   
+	   @RequestMapping(value = "/owner/regTable", method=RequestMethod.GET)
+	   public ModelAndView ownerRegTablePOST(@ModelAttribute storeVo mVo) {
+		   logger.info("ownerRegTablePOST");
+		   bbsDao.regTable(mVo);
+		   
+		   ModelAndView model = new ModelAndView("/owner/regTable");
+		   return model;
+	   }
+	   
 }
-
-
-
-
-

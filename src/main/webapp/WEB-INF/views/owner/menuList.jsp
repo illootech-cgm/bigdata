@@ -6,30 +6,31 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
+<title>메뉴판</title>
 </head>
 <body>
 
-	<table>
+	<table style="border-collapse:separate" bordercolor="blue">
 		<tr>
-			<td>메뉴코드</td>
-			<td>메뉴명</td>
-			<td>메뉴가격</td>
-			<td>메뉴사진 경로</td>
-			<td>상점코드</td>
-		</tr>
+			<th>메뉴코드</th>
+			<th>메뉴명</th>
+			<th>메뉴가격</th>
+			<th>메뉴사진 경로</th>
+			<th>상점코드</th>
+			<th> </th>
+		<tr>
 		<c:forEach items="${menuList}" var="item">
 			<tr>
-				<td>${item.menuCode}</td>
+				<td >${item.menuCode}</td>
 				<td>${item.menuName}</td>
 				<td>${item.menuPrice}</td>
 				<td>${item.menuPicture}</td>
 				<td>${item.storeCode}</td>
+				<td><a href="">삭제</a></td>
 			</tr>
 		</c:forEach>
 
 	</table>
-
 
 </body>
 </html>

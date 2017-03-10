@@ -14,6 +14,7 @@
 <tr><td>상점명 : <input type="text"    id="storeName" name="storeName"></td></tr>
 <tr><td>등록일 : <input type="text" id="regdate" name="regdate"></td></tr>
 <tr><td>상점ID : <input type="text" id="ownerId" name="ownerId"></td></tr>
+
 </table>
 <input type="submit" value="등록하기">
 </form>

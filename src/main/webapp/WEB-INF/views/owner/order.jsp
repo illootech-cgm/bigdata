@@ -25,10 +25,6 @@
 
 <div class="table" align="center"  style="float:left;padding:0px 100px;border-bottom:1px;">
 	
-	<c:forEach item=${} >
-	
-	
-	</c:forEach>
 	<img src="../resources/images/Koala.jpg" height="100px" width="100px">
 	<img src="../resources/images/Hydrangeas.jpg" height="100px" width="100px">
 	<img src="../resources/images/Desert.jpg" height="100px" width="100px">
