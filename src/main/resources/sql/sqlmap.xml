@@ -4,14 +4,19 @@
 <mapper namespace="springtest">
 	<select id="listAll" resultType="com.spring.web.vo.BbsVo">
 		select
-		empno,
-		ename,
-		job,
-		mgr,
-		sal,
-		comm,
-		deptno
-		from emp
+			cstno
+			,cstnm
+            ,cst_dvcd
+            ,addr 
+			,idno 
+            ,cst_phn_no 
+            ,cst_celphn_no 
+         from cst_mgmt
+         where 1=1 
+           AND cstnm like concat(#{cstnm},'%')
+           AND idno like concat(#{idno},'%')
+           AND cst_celphn_no like concat(#{cst_celphn_no},'%')
+		
 	</select>
 
 	<insert id="insert" parameterType="com.spring.web.vo.BbsVo">
@@ -31,40 +36,46 @@
 	</insert>
 
 	<delete id="delete" parameterType="String">
-		delete from emp
-		where empno = #{empno}
+		delete from cst_mgmt
+		where cstno = #{cstno}
 	</delete>
 	
 	<select id="detailInfo" resultType="com.spring.web.vo.BbsVo">
-		select
-		empno,
-		ename,
-		job,
-		mgr,
-		sal,
-		comm,
-		deptno
-		from emp
-		where empno=#{empno}
+		   select 
+	             cstno 
+	             ,edu_dt 
+	             ,edu_strt_tm 
+	             ,edu_end_tm 
+	             ,edu_subject 
+	             ,lssn_attnd_tm
+            	 ,lssn_attnd_yn  
+             from schd_mgmt
+            where edu_dt = #{edu_dt}
+              and edu_subject = #{edu_subject}
+            order by edu_strt_tm
 		
 	</select>
 	
 	<insert id="addMenu" parameterType="com.spring.web.vo.menuVo">
-	insert into
-	menuInfo(
-	storeCode   ,
-	menuCode   ,
-	menuName ,
-	menuPrice,
-	menuPicture
-	)values
-	(
-	#{storeCode},
-	#{menuCode },
-	#{menuName},
-	#{menuPrice},
-	#{menuPicture}
-	)
+	insert into schd_mgmt
+			(
+			cstno 
+            ,edu_dt 
+            ,edu_strt_tm 
+            ,edu_end_tm 
+            ,edu_subject 
+            ,lssn_attnd_tm
+            ,lssn_attnd_yn   
+            )
+            values(
+            #{cstno} 
+            ,#{edu_dt} 
+            ,#{edu_strt_tm} 
+            ,#{edu_end_tm} 
+            ,#{edu_subject} 
+            ,#{lssn_attnd_tm}
+            ,#{lssn_attnd_yn}           
+            )
 	</insert>
 	
 	<select id="extMenu" resultType="integer">
@@ -76,21 +87,33 @@
 	</select>
 	
 	<insert id="regStore" parameterType="com.spring.web.vo.storeVo">
-	insert into
-	store(
-	storeCode   ,
-	storeLoc   ,
-	storeName ,
-	regdate,
-	ownerId
-	)values
-	(
-	#{storeCode},
-	#{storeLoc },
-	#{storeName},
-	sysdate,
-	#{ownerId}
-	)
+	insert into cst_mgmt
+ (
+			cstnm
+            ,cst_dvcd
+            ,addr 
+			,idno 
+            ,cst_phn_no 
+            ,cst_celphn_no
+            ,buy_dt
+            ,buy_amt
+            ,buy_dvcd
+)
+values
+(
+IFNULL(#{cstnm}        ,' ')
+,IFNULL(#{cst_dvcd}     ,' ')
+,IFNULL(#{addr}         ,' ')
+,IFNULL(#{idno}         ,' ')
+,IFNULL(#{cst_phn_no}   ,' ')
+,IFNULL(#{cst_celphn_no},' ')
+,IFNULL(#{buy_dt}         ,' ')
+,IFNULL(#{buy_amt}   ,' ')
+,IFNULL(#{buy_dvcd},' ')
+
+)
+
+
 	</insert>
 
 	<select id="menuList" resultType="com.spring.web.vo.menuVo">
@@ -101,4 +124,49 @@
 	
 	</select>
 
+	<select id="clsHistInfo" resultType="com.spring.web.vo.BbsVo">
+	select  cstno
+			,edu_dt
+			,edu_strt_tm
+			,edu_end_tm
+			,edu_subject
+			,lssn_attnd_tm
+			,lssn_attnd_yn 
+	  from schd_mgmt
+	 where cstno = #{cstno}
+	   and lssn_attnd_yn = #{lssn_attnd_yn}
+	 order by edu_dt,edu_strt_tm
+	
+	
+	</select>
+	
+	<select id="buyHistInfo" resultType="com.spring.web.vo.BbsVo">
+	select  cstno
+			,buy_dt
+			,cst_dvcd
+			,buy_amt
+			,buy_dvcd
+	  from cst_mgmt
+	 where cstno = #{cstno}	   
+	 
+	
+	
+	</select>
+	
+	<update id="uptStore" parameterType="com.spring.web.vo.storeVo">
+	update cst_mgmt
+	   set   cstnm          =      IFNULL(TRIM(#{cstnm})        ,cstnm)
+			,cst_dvcd      =      IFNULL(TRIM(#{cst_dvcd})     ,cst_dvcd)
+			,addr          =      IFNULL(TRIM(#{addr})         ,addr)
+			,idno          =      IFNULL(TRIM(#{idno})         ,idno)
+			,cst_phn_no    =      IFNULL(TRIM(#{cst_phn_no})   ,cst_phn_no)
+			,cst_celphn_no =      IFNULL(TRIM(#{cst_celphn_no}),cst_celphn_no)
+			,buy_dt        =      IFNULL(TRIM(#{buy_dt})         ,buy_dt)
+			,buy_amt       =      IFNULL(TRIM(#{buy_amt})   ,buy_amt)
+			,buy_dvcd      =      IFNULL(TRIM(#{buy_dvcd}),buy_dvcd) 
+	 where cstno = #{cstno}	   
+	 
+	
+	
+	</update>
 </mapper>

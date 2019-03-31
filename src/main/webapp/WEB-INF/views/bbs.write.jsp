@@ -9,16 +9,28 @@
 <body>
 	<form id="emp" method="post" action="insert" >
 		<div>
-			<span>사원번호 </span> <input type="text" id="empno" name="empno" value="" />
+			<span>학생명 </span> <input type="text" id="cstno" name="cstno" value="" />
 		</div>
 		<div>
-			<span>job </span> <input type="text" id="job" name="job" value="" />
+			<span>학생구분 </span> <input type="text" id="cst_dvcd" name="cst_dvcd" value="" />
 		</div>
 		<div>
-			<span>이름</span> <input type="text" id="ename" name="ename" value="" />
+			<span>주민번호</span> <input type="text" id="idno" name="idno" value="" />
 		</div>
 		<div>
-			<span>커미션</span> <input type="text" id="comm" name="comm" />
+			<span>주소</span> <input type="text" id="addr" name="addr" />
+		</div>
+		<div>
+			<span>연락처</span> <input type="text" id="cst_phn_no1" name="cst_phn_no1" />-
+								<input type="text" id="cst_phn_no2" name="cst_phn_no2" />-
+								<input type="text" id="cst_phn_no3" name="cst_phn_no3" />	
+			
+		</div>
+		<div>
+			<span>핸드폰</span> <input type="text" id="cst_celphn_no1" name="cst_celphn_no1" width="120px"/>-
+								<input type="text" id="cst_celphn_no2" name="cst_celphn_no2" />-
+								<input type="text" id="cst_celphn_no3" name="cst_celphn_no3" />	
+			
 		</div>
 		<input type="submit" value="저장" />
 	</form>
