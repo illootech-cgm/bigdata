@@ -335,13 +335,13 @@ public class TestController {
 	   /**
 	    * @return
 	    */
-	   @RequestMapping(value = "/owner/addMenu", method=RequestMethod.GET)
-	   public ModelAndView ownerAddMenu() {
-		   logger.info("ownerAddMenu");
-		   
-		   ModelAndView model = new ModelAndView("/owner/addMenu");
-		   return model;
-	   }
+//	   @RequestMapping(value = "/owner/addMenu", method=RequestMethod.GET)
+//	   public ModelAndView ownerAddMenu() {
+//		   logger.info("ownerAddMenu");
+//		   
+//		   ModelAndView model = new ModelAndView("/owner/addMenu");
+//		   return model;
+//	   }
 	   /**
 	    * @return
 	    */
@@ -388,7 +388,7 @@ public class TestController {
 		   logger.info("ownerRegStorePOST");
 		   bbsDao.regStore(mVo);
 		   
-		   ModelAndView model = new ModelAndView("/home");
+		   ModelAndView model = new ModelAndView("/owner/regStore");
 		   return model;
 	   }
 	   @RequestMapping(value = "/owner/regTable", method=RequestMethod.GET)

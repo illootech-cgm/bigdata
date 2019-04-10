@@ -13,6 +13,7 @@
             ,cst_celphn_no 
          from cst_mgmt
          where 1=1 
+           AND cstno like concat(#{cstno},'%')
            AND cstnm like concat(#{cstnm},'%')
            AND idno like concat(#{idno},'%')
            AND cst_celphn_no like concat(#{cst_celphn_no},'%')
@@ -41,18 +42,21 @@
 	</delete>
 	
 	<select id="detailInfo" resultType="com.spring.web.vo.BbsVo">
-		   select 
-	             cstno 
-	             ,edu_dt 
-	             ,edu_strt_tm 
-	             ,edu_end_tm 
-	             ,edu_subject 
-	             ,lssn_attnd_tm
-            	 ,lssn_attnd_yn  
-             from schd_mgmt
-            where edu_dt = #{edu_dt}
-              and edu_subject = #{edu_subject}
-            order by edu_strt_tm
+		   SELECT 
+	             A.CSTNO 
+	             ,A.EDU_DT 
+	             ,A.EDU_STRT_TM 
+	             ,A.EDU_END_TM 
+	             ,A.EDU_SUBJECT 
+	             ,A.LSSN_ATTND_TM
+            	 ,A.LSSN_ATTND_YN  
+                 ,B.CSTNM
+             FROM SCHD_MGMT A
+             LEFT OUTER JOIN CST_MGMT B
+                  ON A.CSTNO = B.CSTNO
+            WHERE A.EDU_DT = #{edu_dt}
+              AND A.EDU_SUBJECT LIKE CONCAT(#{edu_subject},'%')
+            ORDER BY A.EDU_STRT_TM
 		
 	</select>
 	
@@ -68,8 +72,8 @@
             ,lssn_attnd_yn   
             )
             values(
-            #{cstno} 
-            ,#{edu_dt} 
+            #{cstno_schd} 
+            ,#{edu_dt_schd} 
             ,#{edu_strt_tm} 
             ,#{edu_end_tm} 
             ,#{edu_subject} 
@@ -110,6 +114,28 @@ IFNULL(#{cstnm}        ,' ')
 ,IFNULL(#{buy_dt}         ,' ')
 ,IFNULL(#{buy_amt}   ,' ')
 ,IFNULL(#{buy_dvcd},' ')
+
+)
+
+
+	</insert>
+	
+	<insert id="regBuyHist" parameterType="com.spring.web.vo.storeVo">
+	insert into buy_mgmt
+ (
+			cstno            
+            ,cst_dvcd            
+            ,buy_dt                      
+			,buy_amt 
+			,buy_dvcd           
+)
+values
+(
+IFNULL(#{cstno}        ,' ')
+,IFNULL(#{cst_dvcd}     ,' ')
+,IFNULL(#{buy_dt}         ,' ')
+,IFNULL(#{buy_amt}         ,' ')
+,IFNULL(#{buy_dvcd}         ,' ')
 
 )
 

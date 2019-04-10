@@ -34,8 +34,8 @@
 <script type="text/javascript">
 $(function() {
 	  $( "#buy_dt" ).datepicker({
-	         dayNames: ['월요일', '화요일', '수요일', '목요일', '금요일', '토요일', '일요일'],
-	         dayNamesMin: ['월', '화', '수', '목', '금', '토', '일'], 
+	         dayNames: ['일요일','월요일', '화요일', '수요일', '목요일', '금요일', '토요일' ],
+	         dayNamesMin: ['일','월', '화', '수', '목', '금', '토' ], 
 	         monthNamesShort: ['1','2','3','4','5','6','7','8','9','10','11','12'],
 	         monthNames: ['1월','2월','3월','4월','5월','6월','7월','8월','9월','10월','11월','12월'],
 	        changeMonth: true, 
@@ -56,9 +56,9 @@ $(function() {
 <% request.setCharacterEncoding("UTF-8"); %>
 <br><hr><br>
 <a href="/web/owner/regStore">회원추가</a>
-<a href="/web/home">회원조회</a>
+<!-- <a href="/web/home">회원조회</a> -->
 <a href="/web/comm/main">메인화면</a>
-<a href="/web/owner/menuList">메뉴리스트</a>
+<!-- <a href="/web/owner/menuList">메뉴리스트</a> -->
 <br><hr><br>
 <span>등록하기</span><br><br>
 <form action="regStore" method="post">

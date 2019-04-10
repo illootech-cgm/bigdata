@@ -9,7 +9,8 @@ public class BbsVo {
 	private String sal;
 	private String comm;
 	private String deptno;
-	
+	private String cstno_schd;
+	private String edu_dt_schd;
 	
 	private String edu_dt          ;
 	private String edu_strt_tm     ;
@@ -39,7 +40,19 @@ public class BbsVo {
 	
     
     
-    public String getEdu_dt() {
+    public String getEdu_dt_schd() {
+		return edu_dt_schd;
+	}
+	public void setEdu_dt_schd(String edu_dt_schd) {
+		this.edu_dt_schd = edu_dt_schd;
+	}
+	public String getCstno_schd() {
+		return cstno_schd;
+	}
+	public void setCstno_schd(String cstno_schd) {
+		this.cstno_schd = cstno_schd;
+	}
+	public String getEdu_dt() {
 		return edu_dt;
 	}
 	public void setEdu_dt(String edu_dt) {

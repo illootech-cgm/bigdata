@@ -37,7 +37,7 @@
             caption : '학생정보',    // caption : 그리드의 제목을 지정한다.
             datatype : 'json',               // datatype : 데이터 타입을 지정한다.
             mtype : 'post',
-            height : '80px',                 // height : 그리드의 높이를 지정한다.
+            height : '300px',                 // height : 그리드의 높이를 지정한다.
             colModel : [
                         { name : 'cstno',            index : 'cstno',                width : 100, height:55,       align : 'center', label : "학생번호"  },
                         { name : 'cst_dvcd',         index : 'cst_dvcd',            width : 100, height:55,   align : 'left' , label : "학생구분" },
@@ -125,6 +125,24 @@
     
     }
     
+    
+function find_cst(cellvalue, options, rowObject){
+    	
+    	return "<a href='#' onclick='find_cst_info(\""+rowObject.cstnm+"\"); return false; '  >"+cellvalue+"</a>";
+    
+    }
+    
+    
+function find_cst_info(cstnm){
+	alert(cstnm);
+	$("#cstnm").setValue("cstnm");
+	doSearch();
+}	
+    
+    
+    
+    
+    
     function info2(cstno){
 
 	//	console.log(ret.empno);
@@ -137,7 +155,7 @@
             mtype : 'post',
             height : '150px',                 // height : 그리드의 높이를 지정한다.
             colModel : [
-            	{ name : 'cstno',             index : 'cstno',                width : 50, height:50,       align : 'center', label:"학생번호"},        
+            	{ name : 'cstno',             index : 'cstno',                width : 50, height:50,       align : 'center', label:"학생번호" , formatter : find_cst},        
     			{ name : 'edu_dt',             index : 'empno',                width : 80, height:50,       align : 'center', label:"교육일자"},
                 { name : 'edu_strt_tm',       index : 'edu_strt_tm',            width : 100, height:50,   align : 'left' , label:"교육시작시간" },
                 { name : 'edu_end_tm',       index : 'edu_end_tm',            width : 100, height:50,   align : 'left' , label:"교육종료시간" },

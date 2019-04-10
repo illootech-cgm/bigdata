@@ -80,6 +80,7 @@ public class BbsDao {
 	//		}
 	//	}
 		int res = sqlSession.insert("springtest.regStore",mvo);
+//		int res2 = sqlSession.insert("springtest.regBuyHist",mvo); 결제내역
 		System.out.println(res+"건 추가완료");
 		return res;
 	}
